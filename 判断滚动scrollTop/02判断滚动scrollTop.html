@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>判断滚动scrollTop</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+    </style>
+    <script>
+        //该事件必须在屏幕滚动的前提下 才能触发
+
+        function scroll() { //新版本浏览器
+            if (window.pageYOffset != null) {
+                return {
+                    left: window.pageXOffset,
+                    top: window.pageYOffset
+                };
+            } else if (document.compatMode === "CSS1Compat") { //标准浏览器
+                return {
+                    left: document.documentElement.scrollLeft,
+                    top: document.documentElement.scrollTo
+                };
+            };
+            return { //怪异模式浏览器
+                left: document.body.scrollLeft,
+                top: document.body.scrollTop
+            };
+        };
+
+        //该事件必须在屏幕滚动的前提下 才能触发
+        window.onscroll = function() {
+            console.log(scroll().left);
+            console.log(scroll().top);
+        };
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
